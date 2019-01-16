@@ -1,11 +1,11 @@
 import React from 'react';
-import MainContent from '../MainContent';
+import MainContent from './main-content';
 
 export default class NavBar extends React.Component {
   constructor() {
     super();
     this.state = {
-      index: -1,
+      index: 0,
     }
   }
   onItemClicked = (index) => {
@@ -32,13 +32,7 @@ export default class NavBar extends React.Component {
         ))
       } 
       </div>
-      {
-        this.state.index !== 4 && 
-        <MainContent selectedComponent={
-          this.props.items[this.state.index] &&
-          this.props.items[this.state.index].name
-        } />
-      }
+        <MainContent selectedComponent={ this.props.items[this.state.index] } />
     </div>
   )}
 }

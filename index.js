@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import './static/css/index.css';
 
-import NavBar from './src/NavBar';
+import NavBar from './src/Components/navbar';
 
 const items = [
   {
@@ -35,7 +35,6 @@ class Root extends Component {
   render() {
     return (
       <div>
-        <button onCick={() => items[0].name = "changed"}> click me </button>
         <NavBar items={items} />
       </div>
     )
