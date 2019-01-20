@@ -1,13 +1,27 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import MainContent from './main-content';
-
 export default class NavBar extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      index: 0,
+  constructor(props) {
+    super(props);
+    let index = 0;
+    if (props.items) {
+      const path = window.location.pathname;
+  
+      props.items.some((config, i) => {
+        if (config.path === path ) {
+          index = i;
+          return true;
+        }
+        return false;
+      })
     }
+    this.state = {
+      index,
+    }
+
   }
+
   onItemClicked = (index) => {
     this.setState({
       index,
@@ -22,17 +36,15 @@ export default class NavBar extends React.Component {
       <div className="navbar"> 
       {
         this.props.items.map((item, index) => (
-          <div 
+          <Link 
+            to={item.path}
             key={item.name}
             className={`${index===this.state.index ? 'selected' : ''} navbar-items`}
             onClick={() => this.onItemClicked(index)}
-          >
-            {item.name}
-          </div>
+          > {item.name} </Link>
         ))
       } 
       </div>
-        <MainContent selectedComponent={ this.props.items[this.state.index] } />
     </div>
   )}
 }

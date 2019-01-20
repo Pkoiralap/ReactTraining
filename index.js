@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import './static/css/index.css';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
+import './static/css/index.css';
 import NavBar from './src/Components/navbar';
+import Home from './src/Pages/home';
+import About from './src/Pages/about';
+import Contacts from './src/Pages/contacts';
 
 const items = [
   {
@@ -34,9 +38,15 @@ const items = [
 class Root extends Component {
   render() {
     return (
-      <div>
-        <NavBar items={items} />
-      </div>
+      <BrowserRouter>
+        <div>
+          <NavBar items={items} />
+          <Route exact path="/" component={Home} />
+          <Route path="/home" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contactus" component={Contacts} />
+        </div>
+      </BrowserRouter>
     )
   }
 }
