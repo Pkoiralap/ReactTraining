@@ -9,19 +9,20 @@
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel ./src -d ./build",
     "build": "npm run clean && npm run build-server",
-    "run-server": "npm run build && node ./build/server/index.js"
+    "run-server": "npm run build && webpack -p && NODE_PATH=. NODE_ENV=production node ./build/server/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
     "hapi": "^18.0.0",
+    "inert": "^5.1.2",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.3.1",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
@@ -29,7 +30,7 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.4",
+    "babel-loader": "^8.0.5",
     "css-loader": "^2.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.3",

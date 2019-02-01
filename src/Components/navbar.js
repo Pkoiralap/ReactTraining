@@ -6,8 +6,10 @@ export default class NavBar extends React.Component {
     super(props);
     let index = 0;
     if (props.items) {
-      const path = window.location.pathname;
-  
+      let path = '/';
+      if (typeof window !== "undefined") {
+        path = window.location.pathname;
+      }
       props.items.some((config, i) => {
         if (config.path === path ) {
           index = i;
@@ -39,7 +41,7 @@ export default class NavBar extends React.Component {
           <Link 
             to={item.path}
             key={item.name}
-            className={`${index===this.state.index ? 'selected' : ''} navbar-items`}
+            className={`${index===this.state.index ? 'selected ' : ''}navbar-items`}
             onClick={() => this.onItemClicked(index)}
           > {item.name} </Link>
         ))

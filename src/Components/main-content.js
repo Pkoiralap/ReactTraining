@@ -4,20 +4,11 @@ import PageTitle from '../Components/pageTitle';
 import Home from '../Pages/home';
 
 export default class MainContent extends Component {
-  // life cycle events
-  constructor() {
-    super();
-    this.state = {
-      name: 'hello'
-    }
-  }
-
   render() {
     // this.setState() ---> wrong x
     return (
       <div className="main-content">
-        <PageTitle name={this.props.selectedComponent && this.props.selectedComponent.name } />
-        <Home />
+        {this.props.children}
       </div>
     )
   }
