@@ -1,9 +1,3 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server'
-import { StaticRouter } from "react-router-dom";
-import HtmlMaker from './htmlMaker';
-import App from '../index';
-
 export default [
   {
     method: 'GET',
@@ -35,23 +29,16 @@ export default [
     },
   },
   {
-    path: '/{nest?}', // optional field
-    method: 'GET',
+    method: 'PUT',
+    path: '/api',
     handler: (req, h) => {
-      try {
-        const str = renderToString(
-          <StaticRouter location={req.params.nest}>
-            <App />
-          </StaticRouter>
-        );
-        const res = HtmlMaker(str);
-        return h
-          .response(res)
-          .type('text/html');
-
-      } catch(err) {
-        console.log(err);
+      const variable = {
+        [req.payload.key]: req.payload.value
       }
+      return h.response(variable).type('application/json');
+    },
+    options: {
+      cors: false,
     }
-  },
+  }
 ]

@@ -1,6 +1,7 @@
 import Hapi from 'hapi';
 import Inert from 'inert';
 import routes from './routes';
+import db, {initDatabase} from './database';
 
 async function StartServer() {
   const app = new Hapi.server({
@@ -14,4 +15,6 @@ async function StartServer() {
   console.log('started a server at http://localhost:4000')
 }
 
+
+initDatabase();
 StartServer().catch(error => console.log(error));
