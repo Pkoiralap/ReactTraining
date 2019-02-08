@@ -1,5 +1,19 @@
 import React from 'react';
+import axios from 'axios';
 
+
+const apiCaller = () => {
+  axios({
+    url: 'http://localhost:4000/api',
+    method: 'post',
+    data: {
+      key: 'Name',
+      value: 'Nikesh',
+    }
+  }).then(res => {
+    console.log(res);
+  })
+}
 export default class Users extends React.Component {
   constructor() {
     super();
@@ -10,6 +24,7 @@ export default class Users extends React.Component {
 
   buttonClick = () => {
     console.log('saving... ', this.state.values)
+    apiCaller();
   }
 
   handler = (name, e) => {

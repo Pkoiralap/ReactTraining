@@ -9,6 +9,7 @@ import Home from './Pages/home';
 import About from './Pages/about';
 import Contacts from './Pages/contacts';
 import Users from './Pages/users';
+import API from './Pages/api';
 
 import userSchema from './schemas/user';
 
@@ -47,6 +48,8 @@ const Root = () => {
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/api" component={API} />
+
         <Route path="/users" render={() => <Users schema={userSchema} />} />
         <Route path="/contactus" component={Contacts} />
       </MainContent>

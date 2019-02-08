@@ -9,7 +9,6 @@ class DatabaseHander {
       this.url = mongoConfig.url;
     }
   }
-
   createDatabase = async () => {
     try {
       const database = await MongoClient.connect(this.url);
@@ -26,7 +25,6 @@ class DatabaseHander {
       };
     }
   }
-
   createCollection = (name, options) => this.database.createCollection(name, options)
   createDocument = (collection, doc) => {
     const col = this.database.collection(collection);
