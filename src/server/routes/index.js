@@ -1,9 +1,12 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from "react-router-dom";
 import HtmlMaker from '../htmlMaker';
 import App from '../../index';
 import serverRoutes from './serverRoutes';
+
+import store from '../../Store';
 
 export default [
   ...serverRoutes,
@@ -14,7 +17,9 @@ export default [
       try {
         const str = renderToString(
           <StaticRouter location={req.params.nest}>
-            <App />
+            <Provider store={store}>
+              <App />
+            </Provider>
           </StaticRouter>
         );
         const res = HtmlMaker(str);

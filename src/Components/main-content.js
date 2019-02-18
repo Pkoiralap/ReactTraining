@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import PageTitle from '../Components/pageTitle';
-import Home from '../Pages/home';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-export default class MainContent extends Component {
+class MainContent extends Component {
   render() {
     // this.setState() ---> wrong x
     return (
-      <div className="main-content">
+      <div className="main-content" style={{left: this.props.collapsed ? '110px' : '210px'}}>
         {this.props.children}
       </div>
     )
@@ -20,3 +20,9 @@ MainContent.propTypes = {
     path: PropTypes.string,
   }).isRequired,
 }
+
+const mapStateToProps = state => ({
+  collapsed: state.collapsed,
+});
+
+export default connect(mapStateToProps, {})(MainContent)

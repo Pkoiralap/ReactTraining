@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
+import {Provider} from 'react-redux';
 import { BrowserRouter, StaticRouter, Route, Link } from "react-router-dom";
+
+import Store from './Store';
 
 // import '../static/css/index.css';
 import NavBar from './Components/navbar';
@@ -65,6 +68,10 @@ const Root = () => {
   return app;
 }
 if (typeof window !== 'undefined') {
-  render(<Root />, document.getElementById('react-root'))
+  render(
+    <Provider store={Store}>
+       <Root />
+    </Provider>,
+    document.getElementById('react-root'))
 }
 export default Root;
